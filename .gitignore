@@ -1,0 +1,6 @@
+.idea
+/source_data/kml/*
+/source_data/ovital/*
+/source_data/variflight/*
+output.csv
+.cache
