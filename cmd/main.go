@@ -14,10 +14,10 @@ func main() {
 		"是否需要插值点，默认值true，开启。当两点之间距离大于100米，将按照每100米进行插点",
 	)
 	flag.Parse()
-	print(*isInterpolate)
 
 	config := model.Config{
 		StartTimestamp: int(time.Now().Unix()),
+		IsInterpolate:  *isInterpolate,
 	}
 
 	err := server.Run(config)
