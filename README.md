@@ -154,11 +154,11 @@
 
 - 请确保文件格式正确，命名规范，以便程序正常识别
 - 当前版本为命令行工具，后续将考虑支持图形界面
-- 如有问题或建议，欢迎提交 [Issue](https://github.com/hygao1024/steplife-universal-importer/issues)
+- 如有问题或建议，欢迎提交 [Issue](https://github.com/hygao1024/steplife-universal-importer/issues) 或者 [PR](https://github.com/hygao1024/steplife-universal-importer/pulls)
 
 
 
 ## 8. 致谢
 
 感谢每一位愿意记录人生、珍视记忆的你。
-如果你觉得项目有帮助，请点个 Star ⭐️！
+如果你觉得项目有帮助，请点个 Star ⭐️！仓库地址：https://github.com/hygao1024/steplife-universal-importer
