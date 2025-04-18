@@ -3,9 +3,11 @@ package utils
 import (
 	"encoding/csv"
 	"fmt"
+	"github.com/pkg/errors"
 	"io"
 	"os"
 	"path/filepath"
+	consts "steplife-universal-importer/internal/const"
 )
 
 // CreateCSVFile
@@ -42,12 +44,16 @@ func GetAllFilePath(path string) (map[string][]string, error) {
 
 	dirs, err := os.ReadDir(path)
 	if err != nil {
-		fmt.Println("Error reading directory:", err)
-		return nil, err
+		return nil, errors.Wrap(err, "failed to read directory")
 	}
 
 	for _, dir := range dirs {
-		if dir.IsDir() {
+		if !dir.IsDir() && dir.Name() != ".DS_Store" {
+			sourceFiles[consts.FileTypeCommon] = append(
+				sourceFiles[consts.FileTypeCommon],
+				filepath.Join(path, dir.Name()),
+			)
+		} else if dir.IsDir() {
 			// 构建完整文件路径
 			files, err := os.ReadDir(filepath.Join(path, dir.Name()))
 			if err != nil {

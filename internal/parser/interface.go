@@ -2,6 +2,7 @@ package parser
 
 import (
 	"steplife-universal-importer/internal/model"
+	xif "steplife-universal-importer/internal/utils/if"
 	"steplife-universal-importer/internal/utils/logx"
 	"steplife-universal-importer/internal/utils/pointcalc"
 )
@@ -33,31 +34,31 @@ func (this *BaseAdaptor) Parse(content []byte) ([]model.Point, error) {
 }
 
 func (this *BaseAdaptor) Convert2StepLife(config model.Config, points []model.Point) (*model.StepLife, error) {
-	previousPoint := model.Point{
-		Latitude:  0.0,
-		Longitude: 0.0,
-	}
+	previousPoint := model.Point{}
 
 	sl := model.NewStepLife()
 	logx.Info("处理经纬度")
 	for i, point := range points {
 
 		// 第0个坐标或者不需要插入值，不需要计算中间点，直接写入
-		if i == 0 || config.IsInterpolate == false {
+		if i == 0 || config.EnableInsertPointStrategy == 0 {
 			row := model.NewRow()
-			row.DataTime = config.StartTimestamp
+			row.DataTime = xif.Int64(row.DataTime == 0, config.PathStartTimestamp, row.DataTime)
 			row.Point = point
 			sl.AddCSVRow(*row)
-			config.StartTimestamp++
+			config.PathStartTimestamp++
 		} else {
 			interpolatedPoints := pointcalc.Calculate(previousPoint, point)
 			for _, interpolatedPoint := range interpolatedPoints {
 				row := model.NewRow()
-				row.DataTime = config.StartTimestamp
-				row.Longitude = interpolatedPoint.Longitude
-				row.Latitude = interpolatedPoint.Latitude
+				row.Point = interpolatedPoint
+				row.DataTime = xif.Int64(
+					interpolatedPoint.DataTime == 0,
+					config.PathStartTimestamp,
+					interpolatedPoint.DataTime,
+				)
 				sl.AddCSVRow(*row)
-				config.StartTimestamp++
+				config.PathStartTimestamp++
 			}
 		}
 		previousPoint = point
@@ -68,10 +69,12 @@ func (this *BaseAdaptor) Convert2StepLife(config model.Config, points []model.Po
 
 func CreateAdaptor(parserType string) FileAdaptor {
 	switch parserType {
-	case "kml":
+	case ".kml":
 		return NewKMLAdaptor()
-	case "ovital":
+	case ".ovjsn":
 		return NewOvjsnAdaptor()
+	case ".gpx":
+		return NewGpxAdaptor()
 	default:
 		return nil
 	}

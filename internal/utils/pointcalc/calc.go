@@ -27,6 +27,9 @@ func Calculate(previousPoint model.Point, currentPoint model.Point) []model.Poin
 	for i := 0; i < numPoints; i++ {
 		alpha := float64(i+1) / float64(numPoints+1)
 		newPoint := model.Point{
+			DataTime:  previousPoint.DataTime + int64(alpha*(float64(currentPoint.DataTime-previousPoint.DataTime))),
+			Altitude:  previousPoint.Altitude + alpha*(currentPoint.Altitude-previousPoint.Altitude),
+			Speed:     previousPoint.Speed + alpha*(currentPoint.Speed-previousPoint.Speed),
 			Latitude:  previousPoint.Latitude + alpha*(currentPoint.Latitude-previousPoint.Latitude),
 			Longitude: previousPoint.Longitude + alpha*(currentPoint.Longitude-previousPoint.Longitude),
 		}

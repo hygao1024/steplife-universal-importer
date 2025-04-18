@@ -59,7 +59,3 @@ func (this *KML) Parse(content []byte) ([]model.Point, error) {
 	}
 	return points, nil
 }
-
-func (this *KML) Convert2StepLife(config model.Config, points []model.Point) (*model.StepLife, error) {
-	return this.BaseAdaptor.Convert2StepLife(config, points)
-}

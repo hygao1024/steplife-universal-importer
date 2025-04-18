@@ -4,8 +4,10 @@ go 1.24.2
 
 require (
 	github.com/kellydunn/golang-geo v0.7.0
+	github.com/pkg/errors v0.9.1
 	github.com/tidwall/gjson v1.18.0
 	go.uber.org/zap v1.27.0
+	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
 
