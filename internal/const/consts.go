@@ -6,3 +6,8 @@ const (
 	// 飞常准数据
 	FileTypeVariFlight = "variflight"
 )
+
+const (
+	MinInsertPointDistance     = 30
+	DefaultInsertPointDistance = 100
+)

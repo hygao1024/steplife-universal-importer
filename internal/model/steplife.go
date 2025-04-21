@@ -27,10 +27,10 @@ func (this *StepLife) AddCSVRow(row Row) {
 		fmt.Sprintf("%.8f", row.Latitude),
 		fmt.Sprintf("%d", row.Heading),
 		fmt.Sprintf("%d", row.Accuracy),
-		fmt.Sprintf("%.6f", row.Speed),
+		fmt.Sprintf("%.2f", row.Speed),
 		fmt.Sprintf("%d", row.Distance),
 		fmt.Sprintf("%d", row.IsBackForeground),
 		fmt.Sprintf("%d", row.StepType),
-		fmt.Sprintf("%.6f", row.Altitude),
+		fmt.Sprintf("%.2f", row.Altitude),
 	})
 }

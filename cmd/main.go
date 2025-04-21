@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/pkg/errors"
 	"gopkg.in/ini.v1"
+	consts "steplife-universal-importer/internal/const"
 	"steplife-universal-importer/internal/model"
 	"steplife-universal-importer/internal/server"
 	xif "steplife-universal-importer/internal/utils/if"
@@ -37,7 +38,11 @@ func initConfig() (model.Config, error) {
 		config.PathStartTimestamp = time.Now().Unix()
 	}
 
-	config.InsertPointDistance = xif.Int(config.InsertPointDistance < 30, 100, config.InsertPointDistance)
+	config.InsertPointDistance = xif.Int(
+		config.InsertPointDistance < consts.MinInsertPointDistance,
+		consts.DefaultInsertPointDistance,
+		config.InsertPointDistance,
+	)
 
 	return config, nil
 }
