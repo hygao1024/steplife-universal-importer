@@ -3,6 +3,7 @@ module steplife-universal-importer
 go 1.24.2
 
 require (
+	github.com/eiannone/keyboard v0.0.0-20220611211555-0d226195f203
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/pkg/errors v0.9.1
 	github.com/tidwall/gjson v1.18.0
@@ -19,4 +20,5 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 )

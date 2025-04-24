@@ -43,12 +43,12 @@ func (this *BaseAdaptor) Convert2StepLife(config model.Config, points []model.Po
 		// 第0个坐标或者不需要插入值，不需要计算中间点，直接写入
 		if i == 0 || config.EnableInsertPointStrategy == 0 {
 			row := model.NewRow()
-			row.DataTime = xif.Int64(row.DataTime == 0, config.PathStartTimestamp, row.DataTime)
+			point.DataTime = xif.Int64(point.DataTime == 0, config.PathStartTimestamp, point.DataTime)
 			row.Point = point
 			sl.AddCSVRow(*row)
 			config.PathStartTimestamp++
 		} else {
-			interpolatedPoints := pointcalc.Calculate(previousPoint, point)
+			interpolatedPoints := pointcalc.Calculate(previousPoint, point, config.InsertPointDistance)
 			for _, interpolatedPoint := range interpolatedPoints {
 				row := model.NewRow()
 				row.Point = interpolatedPoint

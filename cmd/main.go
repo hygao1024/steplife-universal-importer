@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/eiannone/keyboard"
 	"github.com/pkg/errors"
 	"gopkg.in/ini.v1"
 	consts "steplife-universal-importer/internal/const"
@@ -12,6 +13,29 @@ import (
 	timeUtils "steplife-universal-importer/internal/utils/time"
 	"time"
 )
+
+func main() {
+
+	println("\n.---..---..---..---..-.   .-..---..---.   .-..-.-.-..---..----..---. .---..---..---. ")
+	println(" \\ \\ `| |'| |- | |-'| |__ | || |- | |- ###| || | | || |-'| || || |-< `| |'| |- | |-< ")
+	println("`---' `-' `---'`-'  `----'`-'`-'  `---'   `-'`-'-'-'`-'  `----'`-'`-' `-' `---'`-'`-'\n")
+
+	logx.Info("执行中......")
+	config, err := initConfig()
+	if err != nil {
+		logx.ErrorF("初始化配置失败：%v", err)
+		panic(err)
+	}
+
+	err = server.Run(config)
+	if err != nil {
+		logx.ErrorF("Run error: %v", err)
+		panic(err)
+	}
+
+	exit()
+
+}
 
 func initConfig() (model.Config, error) {
 	var config model.Config
@@ -47,27 +71,18 @@ func initConfig() (model.Config, error) {
 	return config, nil
 }
 
-func main() {
+func exit() {
+	fmt.Println("Press any key to exit...")
 
-	println("\n.---..---..---..---..-.   .-..---..---.   .-..-.-.-..---..----..---. .---..---..---. ")
-	println(" \\ \\ `| |'| |- | |-'| |__ | || |- | |- ###| || | | || |-'| || || |-< `| |'| |- | |-< ")
-	println("`---' `-' `---'`-'  `----'`-'`-'  `---'   `-'`-'-'-'`-'  `----'`-'`-' `-' `---'`-'`-'\n")
+	if err := keyboard.Open(); err != nil {
+		panic(err)
+	}
+	defer keyboard.Close()
 
-	logx.Info("执行中......")
-	config, err := initConfig()
+	_, _, err := keyboard.GetKey()
 	if err != nil {
-		logx.ErrorF("初始化配置失败：%v", err)
 		panic(err)
 	}
 
-	err = server.Run(config)
-	if err != nil {
-		logx.ErrorF("Run error: %v", err)
-		panic(err)
-	}
-
-	var input string
-	logx.Info("按任意键结束......")
-	_, _ = fmt.Scanln(&input)
-
+	fmt.Println("Exiting program...")
 }
