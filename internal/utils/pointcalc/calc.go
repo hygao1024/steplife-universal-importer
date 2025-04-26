@@ -18,7 +18,7 @@ func Calculate(previousPoint model.Point, currentPoint model.Point, spacing int)
 	p2 := geo.NewPoint(currentPoint.Latitude, currentPoint.Longitude)
 	dist := p1.GreatCircleDistance(p2) // 单位是千米
 	// 100米之间生成一个点
-	numPoints := int(math.Ceil(dist * 1000 / float64(spacing)))
+	numPoints := int(math.Trunc(dist * 1000 / float64(spacing)))
 	// 如果距离太小，则直接返回当前点
 	if numPoints == 0 {
 		return []model.Point{currentPoint}
