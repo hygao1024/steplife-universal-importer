@@ -8,9 +8,9 @@
 
 **一生足迹数据导入器** 是一个便捷的数据转换工具，支持将第三方轨迹数据（如奥维互动地图、KML 等）快速转换为一生足迹 App 所需的 CSV 格式，帮助你更完整地记录旅途与人生的点点滴滴。
 
-> 演示
+> 演示视频
 > 
-> ![](./static/vedio/demo.mp4)
+> https://github.com/hygao1024/steplife-universal-importer/blob/main/static/vedio/demo.mp4
 > 
 ## 2. 前言
 
