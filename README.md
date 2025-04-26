@@ -10,8 +10,8 @@
 
 > 演示
 > 
-> ![](./static/images/demo.gif)
-
+> ![](./static/vedio/demo.mp4)
+> 
 ## 2. 前言
 
 ### 2.1 一生足迹 · 记录一生轨迹
