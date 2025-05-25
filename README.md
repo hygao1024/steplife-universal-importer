@@ -158,7 +158,7 @@ pathStartTime = 2024-04-21 08:00:00
 ./main.exe
 ```
 
-![](./static/images/exec.png)
+<img width="1020" alt="Snipaste_2025-05-25_10-46-02" src="https://github.com/user-attachments/assets/03b1187a-d506-40c6-bd43-70aa538c97b2" />
 
 `Step5.` 程序会生成的`ouput.csv`文件，导入手机中，打开选择选择一生足迹，即可完成数据录入
 

@@ -24,16 +24,17 @@ func (this *Ovjsn) Parse(content []byte) ([]model.Point, error) {
 	}
 
 	result := gjson.ParseBytes(content)
-	latLngData := result.Get("ObjItems.0.Object.ObjectDetail.Latlng").Raw
+	objItems := result.Get("ObjItems").Array()
+	for _, objItem := range objItems {
+		latLngData := objItem.Get("Object.ObjectDetail.Latlng").Raw
+		_ = json.Unmarshal([]byte(latLngData), &latLngArr)
 
-	_ = json.Unmarshal([]byte(latLngData), &latLngArr)
-
-	for i := 0; i < len(latLngArr); i += 2 {
-		points = append(points, model.Point{
-			Latitude:  latLngArr[i],
-			Longitude: latLngArr[i+1],
-		})
+		for i := 0; i < len(latLngArr); i += 2 {
+			points = append(points, model.Point{
+				Latitude:  latLngArr[i],
+				Longitude: latLngArr[i+1],
+			})
+		}
 	}
-
 	return points, nil
 }
