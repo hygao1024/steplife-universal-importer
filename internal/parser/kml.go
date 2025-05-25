@@ -47,14 +47,19 @@ func (this *KML) Parse(content []byte) ([]model.Point, error) {
 			continue
 		}
 		pointData := strings.Split(point, ",")
-		if len(pointData) != 2 {
+		if len(pointData) < 2 {
 			continue
 		}
+		altitude := 0.0
 		lat, _ := strconv.ParseFloat(pointData[1], 64)
 		lng, _ := strconv.ParseFloat(pointData[0], 64)
+		if len(pointData) == 3 {
+			altitude, _ = strconv.ParseFloat(pointData[2], 64)
+		}
 		points = append(points, model.Point{
 			Latitude:  lat,
 			Longitude: lng,
+			Altitude:  altitude,
 		})
 	}
 	return points, nil
