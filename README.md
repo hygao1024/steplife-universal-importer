@@ -138,13 +138,13 @@ pathStartTime = 2024-04-21 08:00:00
 
 `Step2.` 打开奥维互动地图应用，输入起点终点，选择你的路线后并双击，转换成轨迹并保存。具体操作如下图所示
 
-![](./static/images/map_search.png)
+<img width="1485" alt="map_search" src="https://github.com/user-attachments/assets/940807b5-9649-4cb4-96b2-89a80fe327f3" />
 
-![](./static/images/map_search2.png)
+<img width="1485" alt="map_search2" src="https://github.com/user-attachments/assets/3c3516aa-841b-44dc-ba6f-7dbb7ce7839a" />
 
 `Step3.` 点击左下角收藏夹，选中你的轨迹进行导出，导出格式请务必选择`Omap json格式`
 
-![](./static/images/export_tracks.png)
+<img width="1485" alt="export_tracks" src="https://github.com/user-attachments/assets/a4dcc843-efd0-473e-8930-78301e1009c4" />
 
 `Step4.` 导出后的数据放置 `source_data` 目录下，
 
